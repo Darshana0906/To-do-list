@@ -1,44 +1,25 @@
-// Select elements
-const input = document.getElementById("todo-input");
-const addBtn = document.getElementById("add-btn");
-const list = document.getElementById("todo-list");
+function addTask() {
+    let input = document.getElementById("taskInput");
+    let task = input.value;
 
-// Add task
-addBtn.addEventListener("click", addTodo);
+    if (task === "") return;
 
-function addTodo() {
-    const taskText = input.value.trim();
+    let li = document.createElement("li");
+    li.innerText = task;
 
-    if (taskText === "") {
-        alert("Enter a task!");
-        return;
-    }
+    li.onclick = function () {
+        li.classList.toggle("completed");
+    };
 
-    // Create list item
-    const li = document.createElement("li");
-
-    // Task text
-    const span = document.createElement("span");
-    span.textContent = taskText;
-
-    // Mark complete
-    span.addEventListener("click", () => {
-        span.classList.toggle("completed");
-    });
-
-    // Delete button
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
-
-    deleteBtn.addEventListener("click", () => {
+    let delBtn = document.createElement("button");
+    delBtn.innerText = "Delete";
+    delBtn.onclick = function () {
         li.remove();
-    });
+    };
 
-    // Add elements
-    li.appendChild(span);
-    li.appendChild(deleteBtn);
-    list.appendChild(li);
+    li.appendChild(delBtn);
 
-    // Clear input
+    document.getElementById("taskList").appendChild(li);
+
     input.value = "";
 }
