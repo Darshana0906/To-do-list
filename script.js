@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Select elements
 const input = document.getElementById("todo-input");
 const addBtn = document.getElementById("add-btn");
@@ -40,5 +41,30 @@ function addTodo() {
     list.appendChild(li);
 
     // Clear input
+=======
+function addTask() {
+    let input = document.getElementById("taskInput");
+    let task = input.value;
+
+    if (task === "") return;
+
+    let li = document.createElement("li");
+    li.innerText = task;
+
+    li.onclick = function () {
+        li.classList.toggle("completed");
+    };
+
+    let delBtn = document.createElement("button");
+    delBtn.innerText = "Delete";
+    delBtn.onclick = function () {
+        li.remove();
+    };
+
+    li.appendChild(delBtn);
+
+    document.getElementById("taskList").appendChild(li);
+
+>>>>>>> script-js
     input.value = "";
 }
